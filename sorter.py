@@ -24,47 +24,47 @@ APPDATA_FOLDER = os.path.join(os.environ['APPDATA'], 'FileSorter')
 CONFIG_FILE = os.path.join(APPDATA_FOLDER, 'config.json')
 
 DEFAULT_CONFIG = {
-    "source_folder": r"D:\Downloads",
-    "log_file_path": r"D:\FileSorter\sort_downloads_log.txt",
+    "source_folder": r"C:\Downloads",
+    "log_file_path": r"C:\FileSorter\sort_downloads_log.txt",
     "file_types": {
         "pictures": {
-            "path": r"D:\Downloads\Pictures",
+            "path": r"C:\Downloads\Pictures",
             "extensions": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".webp", ".ico", ".psd", ".ai", ".heic", ".raw"]
         },
         "applications": {
-            "path": r"D:\Downloads\Applications",
+            "path": r"C:\Downloads\Applications",
             "extensions": [".exe", ".msi", ".deb", ".dmg", ".pkg", ".app"]
         },
         "documents": {
-            "path": r"D:\Downloads\Documents",
+            "path": r"C:\Downloads\Documents",
             "extensions": [".pdf", ".docx", ".doc", ".txt", ".xlsx", ".xls", ".pptx", ".ppt", ".csv", ".rtf", ".odt", ".ods", ".pages", ".key", ".epub"]
         },
         "videos": {
-            "path": r"D:\Downloads\Videos",
+            "path": r"C:\Downloads\Videos",
             "extensions": [".mp4", ".mkv", ".avi", ".mov", ".webm", ".flv", ".wmv"]
         },
         "audio": {
-            "path": r"D:\Downloads\Audio",
+            "path": r"C:\Downloads\Audio",
             "extensions": [".mp3", ".wav", ".flac", ".aac", ".ogg", ".m4a"]
         },
         "zip": {
-            "path": r"D:\Downloads\Zip",
+            "path": r"C:\Downloads\Zip",
             "extensions": [".zip", ".rar", ".7z", ".gz", ".tar", ".iso"]
         },
         "3d_models": {
-            "path": r"D:\Downloads\3D Models",
+            "path": r"C:\Downloads\3D Models",
             "extensions": [".obj", ".fbx", ".stl", ".blend", ".gltf", ".glb", ".3ds", ".max", ".c4d"]
         },
         "code": {
-            "path": r"D:\Downloads\Code",
+            "path": r"C:\Downloads\Code",
             "extensions": [".py", ".js", ".html", ".css", ".c", ".cpp", ".java", ".php", ".json", ".xml", ".yml", ".md", ".sql", ".sh"]
         },
         "fonts": {
-            "path": r"D:\Downloads\Fonts",
+            "path": r"C:\Downloads\Fonts",
             "extensions": [".ttf", ".otf", ".woff", ".woff2"]
         },
         "other": {
-            "path": r"D:\Downloads\Other",
+            "path": r"C:\Downloads\Other",
             "extensions": []
         }
     }
@@ -157,7 +157,7 @@ def sort_single_file(source_path):
                 with zipfile.ZipFile(source_path, 'r') as zip_ref:
                     zip_ref.extractall(zip_target_path)
                 shutil.move(source_path, os.path.join(zip_target_path, filename))
-                log_message(f"Extracted and moved: {filename}")
+                log_message(f"Extracted and moveC: {filename}")
             except Exception as e:
                 log_message(f"Error processing {filename}: {e}")
             moved = True
@@ -170,18 +170,18 @@ def sort_single_file(source_path):
                     final_path = handle_existing_file(final_path)
                     try:
                         shutil.move(source_path, final_path)
-                        log_message(f"Moved: {filename} -> {final_path}")
+                        log_message(f"MoveC: {filename} -> {final_path}")
                     except Exception as e:
                         log_message(f"Error moving file {filename}: {e}")
                     moved = True
                     break
         
-        if not moved:
+        if not moveC:
             final_path = os.path.join(other_folder, filename)
             final_path = handle_existing_file(final_path)
             try:
                 shutil.move(source_path, final_path)
-                log_message(f"Moved: {filename} -> {final_path}")
+                log_message(f"MoveC: {filename} -> {final_path}")
             except Exception as e:
                 log_message(f"Error moving file {filename}: {e}")
 
@@ -198,7 +198,7 @@ class MyEventHandler(FileSystemEventHandler):
             if file_extension in self.TEMP_EXTENSIONS:
                 log_message(f"Ignoring temporary file: {os.path.basename(event.src_path)}")
                 return
-            log_message(f"New file created: {os.path.basename(event.src_path)}")
+            log_message(f"New file createC: {os.path.basename(event.src_path)}")
             self.queue.put(event.src_path)
     
     def on_moved(self, event):
@@ -479,7 +479,7 @@ class App:
 
     def update_log_text(self, filename):
         self.log_text.config(state='normal')
-        self.log_text.insert(tk.END, f"New file detected: {filename}\n")
+        self.log_text.insert(tk.END, f"New file detecteC: {filename}\n")
         self.log_text.see(tk.END)
         self.log_text.config(state='disabled')
         
@@ -504,3 +504,4 @@ if __name__ == "__main__":
     root.withdraw()
     app = App(root)
     root.mainloop()
+
