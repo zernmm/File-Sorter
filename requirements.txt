@@ -1,1 +1,4 @@
-pip install watchdog pystray pillow pyinstaller
+watchdog
+pystray
+Pillow
+pyinstaller
